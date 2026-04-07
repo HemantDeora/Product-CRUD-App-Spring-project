@@ -1,5 +1,9 @@
 package productcrud.controller;
 
+
+
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +42,18 @@ public class MainController {
 		redirectView.setUrl(request.getContextPath() + "/");
 		return redirectView;
 	}
+	
+@RequestMapping("/view-product")
+	public String viewProducts(Model model) {
+	List<Product> products = productDao.getAllProducts();
+	model.addAttribute("products", products);
+         
+	    model.addAttribute("title", "View Products");
+	  
+
+	    return "view-product";
+	}
+	
+	
 
 }

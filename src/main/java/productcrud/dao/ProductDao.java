@@ -24,9 +24,8 @@ public class ProductDao {
     
     // get all products
     public List<Product> getAllProducts() {
-      this.hibernateTemplate.loadAll(Product.class);
-      return getAllProducts();
-}
+        return this.hibernateTemplate.loadAll(Product.class);
+    }
     
     //detele product by id
     @Transactional
