@@ -1,19 +1,99 @@
-
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
 
+<meta charset="UTF-8">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
 <style>
 body {
-    background: linear-gradient(to right, #eef2f3, #ffffff);
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+    overflow: hidden;
 }
 
-/* center content */
-.main-box {
+/* Floating circles */
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: float 6s infinite ease-in-out;
+}
+
+.circle:nth-child(1) {
+    width: 200px;
+    height: 200px;
+    background: #00c6ff;
+    top: 10%;
+    left: 5%;
+}
+
+.circle:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    background: #ff6a00;
+    bottom: 10%;
+    right: 10%;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Card */
+.hero-box {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 60px;
     text-align: center;
-    margin-top: 80px;
+    color: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    width: 90%;
+    max-width: 650px;
+}
+
+.hero-box h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.hero-box p {
+    font-size: 18px;
+    opacity: 0.85;
+}
+
+.btn-custom {
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.btn-custom:hover {
+    transform: scale(1.05);
+}
+
+.icon-img {
+    width: 90px;
+    margin-bottom: 20px;
+}
+
+.footer-text {
+    margin-top: 30px;
+    font-size: 14px;
+    opacity: 0.7;
 }
 </style>
 
@@ -21,55 +101,34 @@ body {
 
 <body>
 
-<div class="container main-box">
+<div class="circle"></div>
+<div class="circle"></div>
 
-    <h1 class="display-4 font-weight-bold">
-        Product Management System
-    </h1>
+<div class="d-flex justify-content-center align-items-center h-100">
 
-    <p class="lead mt-3">
-        Manage your products easily
-    </p>
+    <div class="hero-box">
 
-    <!-- Buttons -->
-    <div class="mt-4">
+        <img src="https://cdn-icons-png.flaticon.com/512/2331/2331943.png" class="icon-img"/>
 
-        <a href="add-product" class="btn btn-success btn-lg mr-3 shadow">
-            Add Product
-        </a>
+        <h1>Product Management System 🚀</h1>
+        <p>Smart way to manage your products</p>
 
-        <a href="view-product" class="btn btn-primary btn-lg shadow">
-            View Products
-        </a>
+        <div class="mt-4">
 
-    </div>
+            <a href="<c:url value='/add-product'/>" 
+               class="btn btn-success btn-lg btn-custom me-3 shadow">
+               ➕ Add Product
+            </a>
 
-</div>
+            <a href="<c:url value='/view-product'/>" 
+               class="btn btn-primary btn-lg btn-custom shadow">
+               📦 View Products
+            </a>
 
-<!-- Features -->
-<div class="container mt-5">
-
-    <div class="row text-center">
-
-        <div class="col-md-4">
-            <div class="card shadow p-3">
-                <h4>Add</h4>
-                <p>Add new products easily</p>
-            </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card shadow p-3">
-                <h4>Update</h4>
-                <p>Edit product anytime</p>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card shadow p-3">
-                <h4>Delete</h4>
-                <p>Remove unwanted products</p>
-            </div>
+        <div class="footer-text">
+            ⚡ Built with Spring MVC + Hibernate
         </div>
 
     </div>

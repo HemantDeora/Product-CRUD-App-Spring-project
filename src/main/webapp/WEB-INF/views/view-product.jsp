@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
@@ -9,7 +9,18 @@
 
 <style>
 body {
-    background: #f5f7fa;
+    background: linear-gradient(to right, #1f4037, #99f2c8);
+}
+
+.card-custom {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.btn-custom {
+    border-radius: 20px;
 }
 </style>
 
@@ -19,43 +30,58 @@ body {
 
 <div class="container mt-5">
 
-    <h2 class="text-center mb-4">Product List</h2>
+    <a href="<c:url value='/'/>" class="btn btn-dark mb-3">⬅ Back</a>
 
-    <table class="table table-bordered text-center">
+    <div class="card-custom">
 
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price (₹)</th>
-                <th>Action</th>
-            </tr>
-        </thead>
+        <h2 class="text-center mb-4">Product List</h2>
 
-        <tbody>
+        <table class="table table-bordered table-hover text-center">
 
-            <c:forEach items="${products}" var="product">
-            <tr>
-                <td>${product.id}</td>
-                <td>${product.name}</td>
-                <td>${product.description}</td>
-                <td>${product.price}</td>
-                <td>
-                    <button class="btn btn-danger btn-sm">Delete</button>
-                    <button class="btn btn-warning btn-sm">Update</button>
-                </td>
-            </tr>
-            </c:forEach>
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price (₹)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
-        </tbody>
+            <tbody>
 
-    </table>
+                <c:forEach items="${products}" var="product">
+                    <tr>
+                        <td>${product.id}</td>
+                        <td>${product.name}</td>
+                        <td>${product.description}</td>
+                        <td><b>₹ ${product.price}</b></td>
+                        <td>
+                            <a href="<c:url value='/delete/${product.id}'/>"
+                               class="btn btn-danger btn-sm btn-custom"
+                               onclick="return confirm('Are you sure?')">
+                               Delete
+                            </a>
 
-    <div class="text-center mt-3">
-        <a href="add-product" class="btn btn-success">
-            Add Product
-        </a>
+                            <a href="<c:url value='/update/${product.id}'/>"
+                               class="btn btn-warning btn-sm btn-custom">
+                               Update
+                            </a>
+                        </td>
+                    </tr>
+                </c:forEach>
+
+            </tbody>
+
+        </table>
+
+        <div class="text-center mt-3">
+            <a href="<c:url value='/add-product'/>" 
+               class="btn btn-success btn-lg">
+               ➕ Add Product
+            </a>
+        </div>
+
     </div>
 
 </div>
